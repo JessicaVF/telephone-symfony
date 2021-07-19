@@ -2,13 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\UserRepository;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id
@@ -31,7 +33,11 @@ class User
      * @ORM\Column(type="string", length=255)
      */
     private $password;
-
+    /**
+     * @Assert\EqualTo(propertyPath="password", message= "the passwords must match")
+     */
+    private $passwordConfirm;
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -71,5 +77,21 @@ class User
         $this->password = $password;
 
         return $this;
+    }
+    public function getPasswordConfirm(): ?string
+    {
+        return $this->passwordConfirm;
+    }
+    public function getSalt()
+    {
+
+    }
+    public function eraseCredentials()
+    {
+
+    }
+    public function getRoles()
+    { 
+        return ['ROLE_USER'];
     }
 }

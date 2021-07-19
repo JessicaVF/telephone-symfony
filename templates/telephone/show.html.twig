@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+<div class="card m-2" style="width: 18rem;">
+  <img src={{telephone.image}} class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{telephone.modelName}}</h5>
+    <p class="card-text">{{telephone.description}}</p>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Price: {{telephone.price}}</li>
+    <li class="list-group-item">Stockage: {{telephone.stockage}}</li>
+  </ul>
+    <a href="{{path('edit', {id: telephone.id})}}" class="btn btn-primary">Edit this phone</a>
+    <br>
+    <br>
+    <a href="{{path('delete', {id: telephone.id})}}" class="btn btn-danger">Delete this phone</a>
+</div>
+    <a href={{path('telephone')}} class="btn btn-primary">Back to index</a>
+  </div>
+</div>
+
+
+{% endblock %}
