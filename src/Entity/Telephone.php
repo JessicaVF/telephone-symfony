@@ -57,6 +57,12 @@ class Telephone
      */
     private $Constructeur;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="telephones")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $author;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -142,6 +148,18 @@ class Telephone
     public function setConstructeur(?Constructeur $Constructeur): self
     {
         $this->Constructeur = $Constructeur;
+
+        return $this;
+    }
+
+    public function getAuthor(): ?User
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?User $author): self
+    {
+        $this->author = $author;
 
         return $this;
     }

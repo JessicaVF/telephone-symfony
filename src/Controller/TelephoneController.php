@@ -9,8 +9,9 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Validator\Constraints\Date;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class TelephoneController extends AbstractController
 {
@@ -26,7 +27,7 @@ class TelephoneController extends AbstractController
         ]);
     }
     /**
-     * @Route("/show/{id<\d+>}", name="show")
+     * @Route("/show/{id}", name="show", requirements={"id"="\d+"})
      */
     public function show(Telephone $telephone): Response{
 
@@ -39,7 +40,7 @@ class TelephoneController extends AbstractController
      * @Route("/add", name="add")
      * @Route("/edit/{id}", name="edit")
      */
-    public function add(Telephone $telephone = null, Request $requete, EntityManagerInterface $manager):Response
+    public function add(Telephone $telephone = null, Request $requete, EntityManagerInterface $manager, UserInterface $user):Response
     {
 
         if(!$telephone){
@@ -71,10 +72,12 @@ class TelephoneController extends AbstractController
                 }
             }
             if(!$modeEdition||($modeEdition && $img)){
-
+                if($modeEdition && $user != $telephone->getAuthor()){
+                    return $this->redirectToRoute('telephone');
+                }
                 $telephone->setImage($nomImg);
                 $telephone->setCreatedDate(new \DateTime());
-
+                $telephone->setAuthor($user);
             }
             $manager->persist($telephone);
             $manager->flush();

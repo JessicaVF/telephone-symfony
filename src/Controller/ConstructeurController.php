@@ -24,7 +24,7 @@ class ConstructeurController extends AbstractController
         ]);
     }
     /**
-     * @Route("/show/{id<\d+>}", name="showConstructeur")
+     * @Route("/showConstructeur/{id<\d+>}", name="showConstructeur")
      */
     public function show(Constructeur $constructeur): Response{
 

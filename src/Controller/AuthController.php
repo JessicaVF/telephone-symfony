@@ -41,4 +41,17 @@ class AuthController extends AbstractController
         return $this->render('auth/register.html.twig', ['formRegister'=> $formRegister->createView()]);
 
     }
+    /**
+     * @Route("/login", name="login")
+     */
+    public function login(): Response{
+
+        return $this->render('auth/login.html.twig');
+    }
+    /**
+     * @Route("/logout", name="logout")
+     */
+    public function logout(): Response{
+        return $this->redirectToRoute('telephone');
+    }
 }

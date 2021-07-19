@@ -3,11 +3,20 @@
 {% block title %}Hello ConstructeurController!{% endblock %}
 
 {% block body %}
-{# <a href="{{path('addConstructeur')}}" class="btn btn-success"> Add a constructeur </a> #}
+{% if app.user %}
+  <p> Hey {{app.user.username}} </p>
+  <a href="{{path('logout')}}" class="btn btn-danger"> Logout </a>
+  <a href="{{path('add')}}" class="btn btn-success"> Add a telephone </a>
+  <a href={{path('addConstructeur')}} class="btn btn-primary">Add constructeur</a>
+{% else %}
+  <a href="{{path('login')}}" class="btn btn-primary"> Login </a>
+  <a href="{{path('register')}}" class="btn btn-secondary"> Log Up ! </a>
+{% endif %}
+
  <a href={{path('telephone')}} class="btn btn-secondary">Telephones</a>
  <br>
  <br>
- <a href={{path('addConstructeur')}} class="btn btn-primary">Add constructeur</a>
+ 
 {% for constructeur in constructeurs %}
 
 <div class="card m-2" style="width: 18rem;">
