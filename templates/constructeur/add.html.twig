@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+{% form_theme formConstructeur 'bootstrap_5_layout.html.twig' %}
+
+{% block body %}
+
+<div class="m-5">
+{{form_start(formConstructeur)}}
+    {{form_row(formConstructeur.name)}}
+    {{form_row(formConstructeur.origin)}}
+    {{form_row(formConstructeur.description)}}
+    {{form_row(formConstructeur.address)}}
+    {{form_row(formConstructeur.imageLogo)}}
+
+
+    <button class="btn btn-danger" type="submit">
+        {% if modeEdition %}
+            Update constructeur
+        {% else %}
+            Add constructeur
+        {% endif %}    
+    </button>
+
+{{form_end(formConstructeur)}}
+    <br>
+    <a href={{path('constructeur')}} class="btn btn-primary">Back to index</a>
+
+</div>
+{% endblock %}

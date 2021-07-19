@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+<div class="card m-2" style="width: 18rem;">
+  <img src={{constructeur.imageLogo}} class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{constructeur.name}}</h5>
+    <p class="card-text">{{constructeur.description}}</p>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Origin: {{constructeur.origin}}</li>
+    <li class="list-group-item">Address: {{constructeur.address}}</li>
+  </ul>
+</div>
+    <a href="{{path('editConstructeur', {id: constructeur.id})}}" class="btn btn-primary">Edit this Constructeur</a>
+    <a href="{{path('deleteConstructeur', {id: constructeur.id})}}" class="btn btn-danger">Delete this Constructeur</a>
+    
+  </div>
+</div>
+<hr>
+    {# <a href="{{path('edit', {id: telephone.id})}}" class="btn btn-primary">Edit this phone</a>
+    <br>
+    <br>
+    <a href="{{path('delete', {id: telephone.id})}}" class="btn btn-danger">Delete this phone</a> #}
+</div>
+    <a href={{path('constructeur')}} class="btn btn-primary">Back to index (constructeurs)</a>
+  </div>
+</div>
+
+
+{% endblock %}

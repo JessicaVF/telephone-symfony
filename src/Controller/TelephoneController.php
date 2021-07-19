@@ -57,21 +57,24 @@ class TelephoneController extends AbstractController
         {
             $img= $formTelephone->get('image')->getData();
 
-            if($img){
-                try{
+            if($img)
+            {
+                try
+                {
                     $nomImg = uniqid().".".$img->guessExtension();
                     $img->move($this->getParameter('telephones_images'), $nomImg);
-
-                    if(!$modeEdition||($modeEdition && $img)){
-
-                        $telephone->setImage($nomImg);
-                        $telephone->setCreatedDate(new \DateTime());
-
-                    }
-                }catch(FileException $e){
+  
+                }catch(FileException $e)
+                {
                     throw $e;
                     //return $this->redirectToRoute('telephone');
                 }
+            }
+            if(!$modeEdition||($modeEdition && $img)){
+
+                $telephone->setImage($nomImg);
+                $telephone->setCreatedDate(new \DateTime());
+
             }
             $manager->persist($telephone);
             $manager->flush();

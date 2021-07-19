@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ConstructeurController!{% endblock %}
+
+{% block body %}
+{# <a href="{{path('addConstructeur')}}" class="btn btn-success"> Add a constructeur </a> #}
+ <a href={{path('telephone')}} class="btn btn-secondary">Telephones</a>
+ <br>
+ <br>
+ <a href={{path('addConstructeur')}} class="btn btn-primary">Add constructeur</a>
+{% for constructeur in constructeurs %}
+
+<div class="card m-2" style="width: 18rem;">
+  <img src={{constructeur.imageLogo}} class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{constructeur.name}}</h5>
+    <p class="card-text">{{constructeur.description}}</p>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Origin: {{constructeur.origin}}</li>
+    <li class="list-group-item">Address: {{constructeur.address}}</li>
+  </ul>
+</div>
+</div>
+    <a href="{{path('showConstructeur', {id: constructeur.id})}}" class="btn btn-primary">Check this Constructeur</a>
+  </div>
+</div>
+<hr>
+{% endfor %}
+{% endblock %}

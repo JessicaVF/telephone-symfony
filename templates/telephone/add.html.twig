@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+{% form_theme formTelephone 'bootstrap_5_layout.html.twig' %}
+
+{% block body %}
+
+<div class="m-5">
+{{form_start(formTelephone)}}
+    {{form_row(formTelephone.modelName)}}
+    {{form_row(formTelephone.price)}}
+    {{form_row(formTelephone.description)}}
+    {{form_row(formTelephone.stockage)}}
+    {{form_row(formTelephone.image)}}
+    {{form_row(formTelephone.constructeur)}}
+
+
+    <button class="btn btn-danger" type="submit">
+        {% if modeEdition %}
+            Update phone
+        {% else %}
+            Add phone
+        {% endif %}    
+    </button>
+
+{{form_end(formTelephone)}}
+    <br>
+    <a href={{path('telephone')}} class="btn btn-primary">Back to index</a>
+
+</div>
+{% endblock %}
