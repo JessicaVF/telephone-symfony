@@ -12,7 +12,7 @@
 {% endif %}
 
 <div class="card m-2" style="width: 18rem;">
-  <img src={{telephone.image}} class="card-img-top" alt="...">
+  <img src="{{asset('uploads/images/telephones/')}}{{telephone.image}}" class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title">{{telephone.modelName}}</h5>
     <p class="card-text">{{telephone.description}}</p>
